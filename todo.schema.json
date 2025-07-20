@@ -1,0 +1,120 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "AI Project To-Do Structure",
+    "description": "Schema for the todo.json file, which provides a structured, machine-readable format for project tasks, dependencies, and status.",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "The URL of the JSON schema to use for validation and autocompletion."
+        },
+        "project_status": {
+            "description": "The high-level status of the entire project.",
+            "type": "string",
+            "enum": [
+                "planning",
+                "in_progress",
+                "paused",
+                "completed",
+                "maintenance"
+            ]
+        },
+        "project_summary": {
+            "description": "A concise, one-sentence summary of the project's primary goal.",
+            "type": "string"
+        },
+        "last_updated": {
+            "description": "The ISO 8601 timestamp of when this file was last meaningfully updated.",
+            "type": "string",
+            "format": "date-time"
+        },
+        "tasks": {
+            "description": "An array of current, actionable tasks that are part of the active workload.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/task"
+            }
+        },
+        "backlog": {
+            "description": "An array of future tasks, user stories, or ideas that are not yet in the active workload.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/task"
+            }
+        },
+        "example_scenarios": {
+            "description": "An optional array of example tasks used for demonstrating or testing specific conditions or conflicts.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/task"
+            }
+        }
+    },
+    "required": [
+        "project_status",
+        "last_updated",
+        "tasks",
+        "backlog"
+    ],
+    "definitions": {
+        "task": {
+            "type": "object",
+            "description": "Represents a single work item, which can be a task, bug, feature, or idea.",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for the task, used for tracking and dependencies.",
+                    "type": "string",
+                    "pattern": "^[A-Z]+-[0-9]+$"
+                },
+                "title": {
+                    "description": "A short, descriptive title for the task.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A more detailed explanation of the task, including acceptance criteria.",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The current state of the task.",
+                    "type": "string",
+                    "enum": [
+                        "not_started",
+                        "in_progress",
+                        "done",
+                        "blocked",
+                        "idea",
+                        "review"
+                    ]
+                },
+                "priority": {
+                    "description": "A numerical priority for the task (e.g., 1=High, 2=Medium, 3=Low).",
+                    "type": "number",
+                    "minimum": 1
+                },
+                "assigned_to": {
+                    "description": "Indicates who is primarily responsible for the task.",
+                    "type": "string",
+                    "enum": [
+                        "human",
+                        "ai",
+                        "unassigned"
+                    ]
+                },
+                "dependencies": {
+                    "description": "An array of task 'id's that must be completed before this task can be started.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "status",
+                "priority",
+                "assigned_to"
+            ]
+        }
+    }
+}
