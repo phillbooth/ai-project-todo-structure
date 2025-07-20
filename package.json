@@ -1,0 +1,54 @@
+{
+    "name": "@phillipbooth/ai-project-todo-structure",
+    "version": "1.2.0",
+    "description": "A structured, AI-readable to-do framework designed to be used with the @phillipbooth/ai-project-readme-structure package.",
+    "main": "index.js",
+    "files": [
+        "scripts/",
+        "templates/",
+        "README.md",
+        "LICENSE.md",
+        "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md",
+        "CHANGELOG.md",
+        "index.js",
+        "todo.schema.json",
+        ".nvmrc",
+        ".gitignore"
+    ],
+    "scripts": {
+        "lint": "jsonlint --quiet ./*.json templates/*.json todo.schema.json",
+        "validate:schema": "ajv -s todo.schema.json -d templates/todo.json --strict=false -c ajv-formats",
+        "validate:logic": "node scripts/validate-logic.js",
+        "test": "npm run lint && npm run validate:schema && npm run validate:logic",
+        "postinstall": "node -e \"console.log('\\n\\u001b[32m[ai-project-todo-structure] Installation complete.\\u001b[39m\\nTo get started, copy the template to your .ai directory:\\n\\n  \\u001b[33mcp node_modules/@phillipbooth/ai-project-todo-structure/templates/todo.json .ai/\\u001b[39m\\n')\""
+    },
+    "keywords": [
+        "ai",
+        "ai-todo",
+        "documentation",
+        "developer-tools",
+        "project-management",
+        "structured-data",
+        "todo"
+    ],
+    "author": "PHILLIP BOOTH",
+    "license": "Apache-2.0",
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/phillipbooth/ai-project-todo-structure.git"
+    },
+    "bugs": {
+        "url": "https://github.com/phillipbooth/ai-project-todo-structure/issues"
+    },
+    "homepage": "https://github.com/phillipbooth/ai-project-todo-structure#readme",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "devDependencies": {
+        "ajv-cli": "^5.0.0",
+        "ajv-formats": "^3.0.1",
+        "jsonlint": "^1.6.3"
+    }
+}
