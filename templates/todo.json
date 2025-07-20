@@ -1,0 +1,117 @@
+{
+    "$schema": "https://raw.githubusercontent.com/phillipbooth/ai-project-todo-structure/main/todo.schema.json",
+    "project_status": "in_progress",
+    "project_summary": "A fast, offline-first task management application.",
+    "last_updated": "2025-07-20T08:30:00Z",
+    "tasks": [
+        {
+            "id": "T-01",
+            "title": "Set up server boilerplate",
+            "description": "Create the basic Express.js server and install dependencies.",
+            "status": "done",
+            "priority": 1,
+            "assigned_to": "human",
+            "dependencies": []
+        },
+        {
+            "id": "T-02",
+            "title": "Set up React frontend",
+            "description": "Initialize a Vite + React + TypeScript client-side application.",
+            "status": "done",
+            "priority": 1,
+            "assigned_to": "human",
+            "dependencies": []
+        },
+        {
+            "id": "T-03",
+            "title": "Create Mongoose database model for Task",
+            "description": "Define the schema for a Task, including title, due date, and status.",
+            "status": "not_started",
+            "priority": 1,
+            "assigned_to": "ai",
+            "dependencies": [
+                "T-04"
+            ]
+        },
+        {
+            "id": "T-04",
+            "title": "Configure MongoDB connection",
+            "description": "Establish a connection to the MongoDB database using Mongoose.",
+            "status": "not_started",
+            "priority": 1,
+            "assigned_to": "human",
+            "dependencies": []
+        }
+    ],
+    "backlog": [
+        {
+            "id": "B-01",
+            "title": "Implement user authentication",
+            "description": "Implement a full user registration and login flow with JWTs.",
+            "status": "idea",
+            "priority": 3,
+            "assigned_to": "human",
+            "dependencies": []
+        }
+    ],
+    "example_scenarios": [
+        {
+            "id": "E-01",
+            "title": "Dependency Conflict",
+            "description": "This task cannot be started as its dependency is not complete.",
+            "status": "in_progress",
+            "priority": 1,
+            "assigned_to": "ai",
+            "dependencies": [
+                "T-04"
+            ]
+        },
+        {
+            "id": "E-02",
+            "title": "Vague Description",
+            "description": "Fix stuff.",
+            "status": "in_progress",
+            "priority": 2,
+            "assigned_to": "human",
+            "dependencies": []
+        },
+        {
+            "id": "E-03",
+            "title": "Human-Only Task",
+            "description": "Schedule a meeting with the client to finalize the design of the task list.",
+            "status": "not_started",
+            "priority": 1,
+            "assigned_to": "ai",
+            "dependencies": []
+        },
+        {
+            "id": "E-04",
+            "title": "Priority Mismatch",
+            "description": "A low priority task blocking a high priority task.",
+            "status": "blocked",
+            "priority": 3,
+            "assigned_to": "human",
+            "dependencies": [
+                "E-05"
+            ]
+        },
+        {
+            "id": "E-05",
+            "title": "High Priority Task",
+            "description": "Create the API endpoint to fetch all tasks.",
+            "status": "not_started",
+            "priority": 1,
+            "assigned_to": "human",
+            "dependencies": []
+        },
+        {
+            "id": "E-06",
+            "title": "Incorrect Status",
+            "description": "This task is in the `backlog` but its status is `done`.",
+            "status": "done",
+            "priority": 3,
+            "assigned_to": "ai",
+            "dependencies": []
+        }
+    ]
+}
